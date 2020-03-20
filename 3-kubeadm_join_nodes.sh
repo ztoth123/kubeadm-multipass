@@ -1,5 +1,5 @@
 #!/bin/bash
-NODES=$(echo worker{1..2})
+NODES=$(echo worker{1..3})
 
 for NODE in ${NODES}; do
 multipass exec ${NODE} -- bash -c "sudo mkdir -p /home/ubuntu/.kube/"
@@ -12,6 +12,7 @@ done
 sleep 30
 KUBECONFIG=kubeconfig.yaml kubectl label node worker1 node-role.kubernetes.io/node=
 KUBECONFIG=kubeconfig.yaml kubectl label node worker2 node-role.kubernetes.io/node=
+KUBECONFIG=kubeconfig.yaml kubectl label node worker3 node-role.kubernetes.io/node=
 KUBECONFIG=kubeconfig.yaml kubectl get nodes
 echo "############################################################################"
 echo "Enjoy :-)"
